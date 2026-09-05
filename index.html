@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-tr="Ömer Ege Nişli — Mühendislik Portföyü" data-en="Ömer Ege Nişli — Engineering Portfolio">Ömer Ege Nişli — Mühendislik Portföyü</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5F2EA;
+    --paper-line: rgba(43,76,126,0.10);
+    --ink:#1C1F24;
+    --ink-soft:#4A5058;
+    --blue:#2B4C7E;
+    --rust:#A15C34;
+    --margin-red: rgba(178,58,58,0.55);
+    --card-bg:#FCFBF6;
+    --border:#D9D3C3;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      linear-gradient(var(--paper-line) 1px, transparent 1px) 0 0/100% 32px,
+      var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  .sheet{
+    max-width:760px;
+    margin:0 auto;
+    padding:0 40px 120px 84px;
+    position:relative;
+    border-left:2px solid var(--margin-red);
+    margin-left:24px;
+  }
+  @media (max-width:640px){
+    .sheet{padding:0 20px 100px 48px; margin-left:6px;}
+  }
+
+  #langToggle{
+    position:fixed;
+    top:18px;
+    right:18px;
+    z-index:10;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    font-weight:500;
+    color:var(--ink);
+    background:var(--card-bg);
+    border:1px solid var(--ink);
+    padding:7px 13px;
+    cursor:pointer;
+    letter-spacing:0.04em;
+  }
+  #langToggle:hover{ background:var(--ink); color:var(--paper); }
+
+  header.cover{ padding-top:72px; padding-bottom:40px; }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.04em;
+    color:var(--ink-soft);
+    margin-bottom:14px;
+  }
+  h1.name{
+    font-family:'Spectral', serif;
+    font-weight:600;
+    font-size:44px;
+    line-height:1.1;
+    margin:0 0 8px 0;
+    color:var(--ink);
+  }
+  .role{
+    font-size:18px;
+    color:var(--ink-soft);
+    margin-bottom:24px;
+    max-width:52ch;
+  }
+  .contact-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px 18px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+  }
+  .contact-row a{
+    color:var(--blue);
+    text-decoration:none;
+    border-bottom:1px solid rgba(43,76,126,0.35);
+  }
+  .contact-row a:hover{border-bottom-color:var(--blue);}
+  .contact-row span.sep{color:var(--border);}
+
+  nav.toc{
+    margin:36px 0 8px 0;
+    padding:20px 24px;
+    background:var(--card-bg);
+    border:1px solid var(--border);
+  }
+  nav.toc .toc-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.08em;
+    color:var(--ink-soft);
+    margin-bottom:10px;
+  }
+  nav.toc ol{ margin:0; padding:0; list-style:none; columns:2; column-gap:24px; }
+  @media (max-width:560px){ nav.toc ol{columns:1;} }
+  nav.toc li{ break-inside:avoid; margin-bottom:6px; }
+  nav.toc a{ color:var(--ink); text-decoration:none; font-size:14px; }
+  nav.toc a .num{ font-family:'IBM Plex Mono', monospace; color:var(--rust); margin-right:8px; }
+  nav.toc a:hover{ color:var(--blue); }
+
+  .divider{ border:none; border-top:1px solid var(--border); margin:56px 0 40px 0; }
+
+  .entry{ scroll-margin-top:24px; margin-bottom:8px; }
+  .entry-meta{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+    margin-bottom:6px;
+    letter-spacing:0.02em;
+  }
+  .entry-meta .idx{ color:var(--rust); margin-right:10px; }
+  h2.entry-title{
+    font-family:'Spectral', serif;
+    font-weight:600;
+    font-size:26px;
+    margin:0 0 10px 0;
+  }
+  .entry p{ margin:0 0 14px 0; color:var(--ink); max-width:64ch; }
+  .chips{ display:flex; flex-wrap:wrap; gap:8px; margin:14px 0 18px 0; }
+  .chip{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--blue);
+    border:1px solid rgba(43,76,126,0.35);
+    padding:3px 9px;
+    background:rgba(43,76,126,0.05);
+  }
+  .links{ display:flex; flex-wrap:wrap; gap:10px; }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:13.5px;
+    font-weight:500;
+    color:var(--ink);
+    text-decoration:none;
+    padding:8px 14px;
+    border:1px solid var(--ink);
+    transition:background .15s ease, color .15s ease;
+  }
+  .btn:hover{ background:var(--ink); color:var(--paper); }
+  .btn.pending{
+    color:var(--ink-soft);
+    border-color:var(--border);
+    border-style:dashed;
+    cursor:default;
+  }
+  .btn.pending:hover{ background:none; color:var(--ink-soft); }
+
+  footer{
+    margin-top:80px;
+    padding-top:20px;
+    border-top:1px solid var(--border);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+</style>
+</head>
+<body>
+
+<button id="langToggle" type="button">EN</button>
+
+<div class="sheet">
+
+  <header class="cover">
+    <div class="eyebrow" data-tr="MÜHENDİSLİK PROJE GÜNLÜĞÜ" data-en="ENGINEERING PROJECT LOG">MÜHENDİSLİK PROJE GÜNLÜĞÜ</div>
+    <h1 class="name">Ömer Ege Nişli</h1>
+    <div class="role" data-tr="Elektronik ve Haberleşme Mühendisliği öğrencisi — devre tasarımı, gömülü sistemler ve C/MATLAB tabanlı proje geliştirme." data-en="Electronics &amp; Communication Engineering student — circuit design, embedded systems, and C/MATLAB-based project development.">Elektronik ve Haberleşme Mühendisliği öğrencisi — devre tasarımı, gömülü sistemler ve C/MATLAB tabanlı proje geliştirme.</div>
+    <div class="contact-row">
+      <a href="mailto:omeregenisli@gmail.com">omeregenisli@gmail.com</a>
+      <span class="sep">·</span>
+      <a href="https://www.youtube.com/@omerege3495" target="_blank" rel="noopener">YouTube: @omerege3495</a>
+      <span class="sep">·</span>
+      <a href="https://github.com/omeregenisli" target="_blank" rel="noopener">GitHub: omeregenisli</a>
+      <span class="sep">·</span>
+      <a href="https://www.linkedin.com/in/ömer-ege-nişli-4b469b302" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="Proje dizini">
+    <div class="toc-title" data-tr="DİZİN" data-en="INDEX">DİZİN</div>
+    <ol>
+      <li><a href="#lm555"><span class="num">01</span><span data-tr="LM555 Astable Zamanlayıcı Devresi" data-en="LM555 Astable Timer Circuit">LM555 Astable Zamanlayıcı Devresi</span></a></li>
+      <li><a href="#solarcar"><span class="num">02</span><span data-tr="Güneş Enerjili Mini Araç" data-en="Solar-Powered Mini Car">Güneş Enerjili Mini Araç</span></a></li>
+      <li><a href="#rlcmsd"><span class="num">03</span><span data-tr="RLC–Kütle-Yay Sistemleri Analojisi" data-en="RLC–Mass-Spring-Damper Analogy">RLC–Kütle-Yay Sistemleri Analojisi</span></a></li>
+      <li><a href="#bus"><span class="num">04</span><span data-tr="Şehir İçi Otobüs Simülasyonu (C)" data-en="City Bus Transit Simulation (C)">Şehir İçi Otobüs Simülasyonu (C)</span></a></li>
+      <li><a href="#sudoku"><span class="num">05</span><span data-tr="Binary Sudoku Oyunu (C)" data-en="Binary Sudoku Game (C)">Binary Sudoku Oyunu (C)</span></a></li>
+      <li><a href="#smartgrids"><span class="num">06</span><span data-tr="Smart Grids Araştırma Sunumu" data-en="Smart Grids Research Presentation">Smart Grids Araştırma Sunumu</span></a></li>
+      <li><a href="#sdg9"><span class="num">07</span><span data-tr="SDG 9 — Güneşle Beslenen Mesh Ağlar" data-en="SDG 9 — Solar-Powered Mesh Networks">SDG 9 — Güneşle Beslenen Mesh Ağlar</span></a></li>
+    </ol>
+  </nav>
+
+  <hr class="divider">
+
+  <!-- 01 LM555 -->
+  <section class="entry" id="lm555">
+    <div class="entry-meta"><span class="idx">01</span><span data-tr="EED 1009 · Ocak 2025 · Çağrı Can ile birlikte" data-en="EED 1009 · January 2025 · with Çağrı Can">EED 1009 · Ocak 2025 · Çağrı Can ile birlikte</span></div>
+    <h2 class="entry-title" data-tr="LM555 Astable Zamanlayıcı Devresi" data-en="LM555 Astable Timer Circuit">LM555 Astable Zamanlayıcı Devresi</h2>
+    <p data-tr="LM555 zamanlayıcı entegresini astable modda kullanarak sürekli kare dalga üreten ve bir LED'i belirli periyotlarla yakıp söndüren bir devre tasarlandı. Potansiyometre ile frekans gerçek zamanlı ayarlanabiliyor. Yüksek akımdan kaynaklanan LED arızası gibi sorunlar giderildi; toplam bütçe 120₺ ile ekonomik bir tasarım hedeflendi." data-en="Designed a circuit using the LM555 timer IC in astable mode to generate a continuous square wave and blink an LED at a set period, with a potentiometer for real-time frequency adjustment. Resolved issues such as LED failure under high current, keeping the design economical at a total budget of ₺120.">LM555 zamanlayıcı entegresini astable modda kullanarak sürekli kare dalga üreten ve bir LED'i belirli periyotlarla yakıp söndüren bir devre tasarlandı. Potansiyometre ile frekans gerçek zamanlı ayarlanabiliyor. Yüksek akımdan kaynaklanan LED arızası gibi sorunlar giderildi; toplam bütçe 120₺ ile ekonomik bir tasarım hedeflendi.</p>
+    <div class="chips">
+      <span class="chip">LM555</span>
+      <span class="chip" data-tr="Astable Mod" data-en="Astable Mode">Astable Mod</span>
+      <span class="chip">Breadboard</span>
+      <span class="chip" data-tr="Analog Devre" data-en="Analog Circuit">Analog Devre</span>
+    </div>
+    <div class="links">
+      <a class="btn" href="https://github.com/omeregenisli/lm555-timer-circuit" target="_blank" rel="noopener"><span data-tr="↳ GitHub Reposu" data-en="↳ GitHub Repo">↳ GitHub Reposu</span></a>
+      <a class="btn" href="https://www.youtube.com/watch?v=IWLITI55ebI" target="_blank" rel="noopener"><span data-tr="↳ Sunum + Demo (YouTube)" data-en="↳ Presentation + Demo (YouTube)">↳ Sunum + Demo (YouTube)</span></a>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- 02 Solar Car -->
+  <section class="entry" id="solarcar">
+    <div class="entry-meta"><span class="idx">02</span><span data-tr="EED 1014 — Mühendislik Tasarımı · Dokuz Eylül Üniversitesi" data-en="EED 1014 — Engineering Design · Dokuz Eylül University">EED 1014 — Mühendislik Tasarımı · Dokuz Eylül Üniversitesi</span></div>
+    <h2 class="entry-title" data-tr="Güneş Enerjili Mini Araç" data-en="Solar-Powered Mini Car">Güneş Enerjili Mini Araç</h2>
+    <p data-tr="Sadece güneş enerjisiyle çalışan küçük ölçekli bir araç tasarlandı ve üretildi. 6V güneş paneli, TP4056 şarj modülü ile dört adet 1.2V şarj edilebilir pili besliyor; bu piller de aracı hareket ettiren DC motoru sürüyor. Panel açısı ve ışık yoğunluğu gibi gerçek dünya koşulları göz önünde bulundurularak sistem optimize edildi." data-en="Designed and built a small-scale vehicle powered entirely by solar energy. A 6V solar panel feeds a TP4056 charging module, which charges four 1.2V rechargeable batteries that in turn drive the car's DC motor. The system was optimized for real-world conditions such as panel angle and light intensity.">Sadece güneş enerjisiyle çalışan küçük ölçekli bir araç tasarlandı ve üretildi. 6V güneş paneli, TP4056 şarj modülü ile dört adet 1.2V şarj edilebilir pili besliyor; bu piller de aracı hareket ettiren DC motoru sürüyor. Panel açısı ve ışık yoğunluğu gibi gerçek dünya koşulları göz önünde bulundurularak sistem optimize edildi.</p>
+    <div class="chips">
+      <span class="chip" data-tr="Fotovoltaik Panel" data-en="Photovoltaic Panel">Fotovoltaik Panel</span>
+      <span class="chip">TP4056</span>
+      <span class="chip" data-tr="DC Motor" data-en="DC Motor">DC Motor</span>
+      <span class="chip" data-tr="Sürdürülebilir Enerji" data-en="Sustainable Energy">Sürdürülebilir Enerji</span>
+    </div>
+    <div class="links">
+      <a class="btn" href="https://github.com/omeregenisli/solar-powered-mini-car." target="_blank" rel="noopener"><span data-tr="↳ GitHub Reposu" data-en="↳ GitHub Repo">↳ GitHub Reposu</span></a>
+      <a class="btn" href="https://www.youtube.com/watch?v=L9RL3uXSAv0" target="_blank" rel="noopener"><span data-tr="↳ Test Sürüşü (YouTube)" data-en="↳ Test Drive (YouTube)">↳ Test Sürüşü (YouTube)</span></a>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- 03 RLC-MSD -->
+  <section class="entry" id="rlcmsd">
+    <div class="entry-meta"><span class="idx">03</span><span data-tr="EE202–ME352 · Disiplinlerarası Proje (EE × ME) · Grup 17" data-en="EE202–ME352 · Interdisciplinary Project (EE × ME) · Group 17">EE202–ME352 · Disiplinlerarası Proje (EE × ME) · Grup 17</span></div>
+    <h2 class="entry-title" data-tr="RLC ve Kütle-Yay Sistemleri Arasındaki Elektrik–Mekanik Analoji" data-en="Electrical–Mechanical Analogy Between RLC and Mass-Spring-Damper Systems">RLC ve Kütle-Yay Sistemleri Arasındaki Elektrik–Mekanik Analoji</h2>
+    <p data-tr="Bir RLC devresi, kuvvet-akım analojisi kullanılarak eşdeğer bir kütle-yay-damper (mekanik) sisteme dönüştürüldü. Devrenin birim basamak yanıtı LTspice ile simüle edildi, düğüm denklemleri çıkarıldı ve elektrik mühendisliği ile makine mühendisliği öğrencileri ortak çalışarak iki alan arasındaki matematiksel benzerliği gösterdi." data-en="Converted an RLC circuit into an equivalent mass-spring-damper (mechanical) system using the force–current analogy. Simulated the circuit's unit step response in LTspice, derived the node equations, and worked alongside mechanical engineering students to demonstrate the mathematical equivalence between the two domains.">Bir RLC devresi, kuvvet-akım analojisi kullanılarak eşdeğer bir kütle-yay-damper (mekanik) sisteme dönüştürüldü. Devrenin birim basamak yanıtı LTspice ile simüle edildi, düğüm denklemleri çıkarıldı ve elektrik mühendisliği ile makine mühendisliği öğrencileri ortak çalışarak iki alan arasındaki matematiksel benzerliği gösterdi.</p>
+    <div class="chips">
+      <span class="chip">LTspice</span>
+      <span class="chip">MATLAB</span>
+      <span class="chip" data-tr="Sistem Analojisi" data-en="System Analogy">Sistem Analojisi</span>
+      <span class="chip" data-tr="Disiplinlerarası" data-en="Interdisciplinary">Disiplinlerarası</span>
+    </div>
+    <div class="links">
+      <a class="btn" href="https://github.com/omeregenisli/rlc-msd-analogy-project" target="_blank" rel="noopener"><span data-tr="↳ GitHub Reposu (Rapor + Kod)" data-en="↳ GitHub Repo (Report + Code)">↳ GitHub Reposu (Rapor + Kod)</span></a>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- 04 Bus -->
+  <section class="entry" id="bus">
+    <div class="entry-meta"><span class="idx">04</span><span data-tr="EED 1010 — Algoritmalar ve Programlama · Final Projesi" data-en="EED 1010 — Algorithms and Programming · Final Project">EED 1010 — Algoritmalar ve Programlama · Final Projesi</span></div>
+    <h2 class="entry-title" data-tr="Şehir İçi Toplu Taşıma Simülasyonu (C)" data-en="City Public Transport Simulation (C)">Şehir İçi Toplu Taşıma Simülasyonu (C)</h2>
+    <p data-tr="C dilinde, 6 hatta dağılmış 12 otobüs ve 16 durak içeren bir şehir toplu taşıma sisteminin simülasyonu yazıldı. FIFO mantığıyla dinamik yolcu kuyrukları, yolcu başına 0-2 bagaj yönetimi ve otobüslerin konumunu/istatistiklerini gösteren gerçek zamanlı bir terminal arayüzü geliştirildi. Rota verileri için dosya G/Ç, struct tabanlı bellek yönetimi ve veri/mantık/arayüz katmanlarını ayıran modüler mimari kullanıldı." data-en="Wrote a C simulation of a city public transport system with 12 buses across 6 lines and 16 stops. Built dynamic FIFO passenger queues, 0–2 luggage handling per passenger, and a real-time terminal interface showing bus positions and statistics. Used file I/O for route data, struct-based memory management, and a modular architecture separating data, logic, and interface layers.">C dilinde, 6 hatta dağılmış 12 otobüs ve 16 durak içeren bir şehir toplu taşıma sisteminin simülasyonu yazıldı. FIFO mantığıyla dinamik yolcu kuyrukları, yolcu başına 0-2 bagaj yönetimi ve otobüslerin konumunu/istatistiklerini gösteren gerçek zamanlı bir terminal arayüzü geliştirildi. Rota verileri için dosya G/Ç, struct tabanlı bellek yönetimi ve veri/mantık/arayüz katmanlarını ayıran modüler mimari kullanıldı.</p>
+    <div class="chips">
+      <span class="chip">C</span>
+      <span class="chip" data-tr="Struct &amp; Dosya G/Ç" data-en="Struct &amp; File I/O">Struct &amp; Dosya G/Ç</span>
+      <span class="chip" data-tr="FIFO Kuyruk" data-en="FIFO Queue">FIFO Kuyruk</span>
+      <span class="chip">Terminal UI</span>
+    </div>
+    <div class="links">
+      <a class="btn" href="https://github.com/omeregenisli/big-city-transport-simulation" target="_blank" rel="noopener"><span data-tr="↳ GitHub Reposu" data-en="↳ GitHub Repo">↳ GitHub Reposu</span></a>
+      <a class="btn" href="https://www.youtube.com/watch?v=RYxP8_dT3lo&t=7s" target="_blank" rel="noopener"><span data-tr="↳ Demo (YouTube)" data-en="↳ Demo (YouTube)">↳ Demo (YouTube)</span></a>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- 05 Sudoku -->
+  <section class="entry" id="sudoku">
+    <div class="entry-meta"><span class="idx">05</span><span data-tr="EED 1005 — Programlamaya Giriş · Grup Projesi" data-en="EED 1005 — Introduction to Programming · Group Project">EED 1005 — Programlamaya Giriş · Grup Projesi</span></div>
+    <h2 class="entry-title" data-tr="Binary Sudoku Oyunu (C)" data-en="Binary Sudoku Game (C)">Binary Sudoku Oyunu (C)</h2>
+    <p data-tr="C programlama derslerinde öğrenilen temel kavramları pekiştirmek amacıyla, oyun tahtası mantığı, koordinat tabanlı taş yerleştirme ve kural kontrolünü içeren bir binary sudoku oyunu geliştirildi. Proje hafta hafta akış şeması, tahta/oyun mantığı ve hata ayıklama aşamalarından geçirilerek tamamlandı." data-en="Built a binary sudoku game to reinforce core concepts from C programming coursework, including board logic, coordinate-based piece placement, and rule checking. Completed in weekly stages: flowcharting, board/game logic, and debugging.">C programlama derslerinde öğrenilen temel kavramları pekiştirmek amacıyla, oyun tahtası mantığı, koordinat tabanlı taş yerleştirme ve kural kontrolünü içeren bir binary sudoku oyunu geliştirildi. Proje hafta hafta akış şeması, tahta/oyun mantığı ve hata ayıklama aşamalarından geçirilerek tamamlandı.</p>
+    <div class="chips">
+      <span class="chip">C</span>
+      <span class="chip" data-tr="Oyun Mantığı" data-en="Game Logic">Oyun Mantığı</span>
+      <span class="chip" data-tr="Takım Çalışması" data-en="Teamwork">Takım Çalışması</span>
+    </div>
+    <div class="links">
+      <a class="btn" href="https://github.com/omeregenisli/sudoku" target="_blank" rel="noopener"><span data-tr="↳ GitHub Reposu" data-en="↳ GitHub Repo">↳ GitHub Reposu</span></a>
+      <a class="btn" href="https://www.youtube.com/watch?v=9iTrXHrg2G4&t=2s" target="_blank" rel="noopener"><span data-tr="↳ Demo (YouTube)" data-en="↳ Demo (YouTube)">↳ Demo (YouTube)</span></a>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- 06 Smart Grids -->
+  <section class="entry" id="smartgrids">
+    <div class="entry-meta" data-tr="Bireysel Araştırma Sunumu" data-en="Individual Research Presentation">Bireysel Araştırma Sunumu</div>
+    <h2 class="entry-title" data-tr="Smart Grids: Kentsel Enerji Altyapısını Dönüştürmek" data-en="Smart Grids: Transforming Urban Energy Infrastructure">Smart Grids: Kentsel Enerji Altyapısını Dönüştürmek</h2>
+    <p data-tr="Akıllı sayaç altyapısı (AMI), gerçek zamanlı veri iletimi, şebeke otomasyon sensörleri ve yük dengeleme algoritmaları gibi teknolojilerin kentsel enerji sistemlerine etkisini inceleyen bir araştırma sunumu. Amsterdam'daki merkezi olmayan akıllı şebeke uygulaması örnek vaka olarak ele alındı ve bu uygulamanın hane başına enerji tüketimini %15 azalttığı gösterildi." data-en="A research presentation examining the impact of technologies such as advanced metering infrastructure (AMI), real-time data transmission, grid automation sensors, and load-balancing algorithms on urban energy systems. Amsterdam's decentralized smart grid deployment was used as a case study, showing a 15% reduction in per-household energy consumption.">Akıllı sayaç altyapısı (AMI), gerçek zamanlı veri iletimi, şebeke otomasyon sensörleri ve yük dengeleme algoritmaları gibi teknolojilerin kentsel enerji sistemlerine etkisini inceleyen bir araştırma sunumu. Amsterdam'daki merkezi olmayan akıllı şebeke uygulaması örnek vaka olarak ele alındı ve bu uygulamanın hane başına enerji tüketimini %15 azalttığı gösterildi.</p>
+    <div class="chips">
+      <span class="chip" data-tr="Akıllı Şebekeler" data-en="Smart Grids">Akıllı Şebekeler</span>
+      <span class="chip" data-tr="Enerji Sistemleri" data-en="Energy Systems">Enerji Sistemleri</span>
+      <span class="chip" data-tr="Sürdürülebilirlik" data-en="Sustainability">Sürdürülebilirlik</span>
+    </div>
+    <div class="links">
+      <!-- TODO: sunumu GitHub'a yükleyip linki ekleyin -->
+      <a class="btn pending" href="#"><span data-tr="↳ GitHub Reposu (yakında)" data-en="↳ GitHub Repo (coming soon)">↳ GitHub Reposu (yakında)</span></a>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- 07 SDG9 -->
+  <section class="entry" id="sdg9">
+    <div class="entry-meta"><span class="idx">07</span><span data-tr="Bireysel Araştırma Sunumu — Sürdürülebilir Kalkınma Amacı 9" data-en="Individual Research Presentation — Sustainable Development Goal 9">Bireysel Araştırma Sunumu — Sürdürülebilir Kalkınma Amacı 9</span></div>
+    <h2 class="entry-title" data-tr="SDG 9: Güneşle Beslenen Mesh Ağlarla Dijital Uçurumu Kapatmak" data-en="SDG 9: Closing the Digital Divide with Solar-Powered Mesh Networks">SDG 9: Güneşle Beslenen Mesh Ağlarla Dijital Uçurumu Kapatmak</h2>
+    <p data-tr="Sürdürülebilir Kalkınma Amacı 9 (Sanayi, Yenilikçilik ve Altyapı) kapsamında, kırsal-kentsel internet erişimi uçurumuna elektronik ve haberleşme mühendisliği bakış açısıyla bir çözüm öneren sunum. Pahalı ana kablo altyapısına ihtiyaç duymayan, düğümlerin birbirine bağlandığı ve güneş paneliyle beslenen, düşük maliyetli merkezi olmayan bir mesh ağ konsepti önerildi." data-en="A presentation proposing a solution to the rural–urban internet access gap from an electronics and communication engineering perspective, framed within Sustainable Development Goal 9 (Industry, Innovation and Infrastructure). Proposed a low-cost, decentralized, solar-powered mesh network concept that connects nodes without requiring expensive backbone infrastructure.">Sürdürülebilir Kalkınma Amacı 9 (Sanayi, Yenilikçilik ve Altyapı) kapsamında, kırsal-kentsel internet erişimi uçurumuna elektronik ve haberleşme mühendisliği bakış açısıyla bir çözüm öneren sunum. Pahalı ana kablo altyapısına ihtiyaç duymayan, düğümlerin birbirine bağlandığı ve güneş paneliyle beslenen, düşük maliyetli merkezi olmayan bir mesh ağ konsepti önerildi.</p>
+    <div class="chips">
+      <span class="chip">SDG 9</span>
+      <span class="chip" data-tr="Mesh Network" data-en="Mesh Network">Mesh Network</span>
+      <span class="chip" data-tr="Güneş Enerjisi" data-en="Solar Energy">Güneş Enerjisi</span>
+    </div>
+    <div class="links">
+      <!-- TODO: sunumu GitHub'a yükleyip linki ekleyin -->
+      <a class="btn pending" href="#"><span data-tr="↳ GitHub Reposu (yakında)" data-en="↳ GitHub Repo (coming soon)">↳ GitHub Reposu (yakında)</span></a>
+    </div>
+  </section>
+
+  <footer data-tr="Son güncelleme: 2026 · Bu sayfa GitHub Pages üzerinde barındırılmaktadır." data-en="Last updated: 2026 · This page is hosted on GitHub Pages.">
+    Son güncelleme: 2026 · Bu sayfa GitHub Pages üzerinde barındırılmaktadır.
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var btn = document.getElementById('langToggle');
+    function apply(lang){
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-tr]').forEach(function(el){
+        var val = lang === 'tr' ? el.getAttribute('data-tr') : el.getAttribute('data-en');
+        if (val !== null) el.textContent = val;
+      });
+      btn.textContent = lang === 'tr' ? 'EN' : 'TR';
+      try { localStorage.setItem('portfolio-lang', lang); } catch(e){}
+    }
+    btn.addEventListener('click', function(){
+      var next = document.documentElement.lang === 'tr' ? 'en' : 'tr';
+      apply(next);
+    });
+    var saved = 'en';
+    try { saved = localStorage.getItem('portfolio-lang') || 'en'; } catch(e){}
+    apply(saved);
+  })();
+</script>
+
+</body>
+</html>
